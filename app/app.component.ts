@@ -18,7 +18,9 @@ import {Meal} from './meal.model';
 
 export class AppComponent {
   public mealListMaster: Meal[] = [
-    new Meal("Breakfast Sandwich", "Eggs and bacon on a bagel", 300)
+    new Meal("Breakfast Sandwich", "Eggs and bacon on a bagel", 511),
+    new Meal("Coffee", "a cup of coffee", 1),
+    new Meal("Apple", "an apple.", 95)
   ];
   addMeal(newMeal) {
     this.mealListMaster.push(newMeal);
