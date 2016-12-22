@@ -18,9 +18,12 @@ import {Meal} from './meal.model';
 
       <div *ngFor="let meal of mealListChild | calorieFilter:caloriesToFilter">
         <hr>
-        <h3>{{meal.name}} <a (click)="toggleEdit(meal)">edit</a></h3>
+        <h3>{{meal.name}} </h3>
         <h4>{{meal.calories}} calories</h4>
         <p>{{meal.details}}</p>
+
+        <a *ngIf="hideEdit" (click)="displayEdit(meal)">edit</a>
+        <a *ngIf="showEdit" (click)="concealEdit(meal)">hide edit form</a>
       </div>
       <hr>
     </div>
@@ -32,13 +35,20 @@ export class MealListComponent {
   @Output() mealListEvent = new EventEmitter();
   public caloriesToFilter: string = "All";
   public showEdit: boolean = false;
+  public hideEdit: boolean = true;
   public mealToEdit: Meal;
   sendCalorieData(targetCalories) {
     this.caloriesToFilter = targetCalories;
     console.log(targetCalories);
   }
-  toggleEdit(meal) {
+  displayEdit(meal) {
     this.mealToEdit = meal;
     this.showEdit = true;
+    this.hideEdit = false;
+  }
+  concealEdit(meal) {
+    this.mealToEdit = meal;
+    this.hideEdit = true;
+    this.showEdit = false;
   }
 }
